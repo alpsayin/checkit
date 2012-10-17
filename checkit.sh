@@ -1,4 +1,5 @@
 #!/bin/bash
+os=`uname`
 while true
 do
 #	sleep 1
@@ -6,12 +7,17 @@ do
 #	echo $result
 	if [ "$result" ];
 	then
-		# MAC OS
-		#afplay "$1" &
-		# LINUX
+	    if [ "Linux" == $os ];
+	    then
 		ffplay "$1" &
-
 		sleep "$2"
 		killall ffplay
+	    fi
+	    if [ "Darwin" == $os ];
+	    then
+		afplay "$1" &
+		sleep "$2"
+		killall afplay
+	    fi
 	fi
 done
