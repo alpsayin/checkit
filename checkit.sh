@@ -2,22 +2,15 @@
 os=`uname`
 while true
 do
-	sleep 0.1
-	result=`ps aux | grep "git push" | grep -v grep | grep -v "checkit.sh"`
+	result=`ps aux | grep "tomcat6" | grep -v grep | grep -v "checkit.sh"`
 #	echo $result
-	if [ "$result" ];
+	if [ -z "$result" ];
 	then
 	    if [ "Linux" == $os ];
 	    then
-		ffplay "$1" &
+		sudo service tomcat6 start
 		sleep "$2"
-		killall ffplay
 	    fi
-	    if [ "Darwin" == $os ];
-	    then
-		afplay "$1" &
-		sleep "$2"
-		killall afplay
-	    fi
-	fi
+	fi	
+	sleep "$1"
 done
