@@ -11,6 +11,12 @@ do
 		sudo service tomcat6 start
 		sleep "$2"
 	    fi
+	    if [ "Darwin" == $os ];
+	    then
+		sudo service tomcat6 start
+		sleep "$2"
+		killall afplay
+	    fi
 	fi	
 	sleep "$1"
 done
